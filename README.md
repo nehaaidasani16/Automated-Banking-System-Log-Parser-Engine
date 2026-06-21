@@ -44,7 +44,7 @@ banking-log-parser/
 ├── banking_errors.db    ← Auto-generated SQLite database (output)
 └── README.md
 
-
+```
 
 The entire pipeline lives inside two functions: `parse_logs()` which runs the ETL loop, and `print_summary()` which runs the SQL verification at the end. Here is what happens at each stage.
 
