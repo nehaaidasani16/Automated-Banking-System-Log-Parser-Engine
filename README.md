@@ -71,8 +71,7 @@ The result is ordered by error count in descending order so the most-affected se
 
 Running this engine against the 1,000-row `bank_gateway.log` file produces the following terminal output:
 
-<img width="947" height="521" alt="image" src="https://github.com/user-attachments/assets/2811c27c-7d77-4f61-b10b-27d9206ae927" />
-
+![Banking Log Parser Engine — Terminal Output](assets/output.png)
 '''
 
 
