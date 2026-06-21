@@ -71,34 +71,8 @@ The result is ordered by error count in descending order so the most-affected se
 
 Running this engine against the 1,000-row `bank_gateway.log` file produces the following terminal output:
 
-```
-====================================
-     Banking Log Parse Engine
-====================================
- [DB] Connected to 'banking_errors.db'
- [DB]  Table 'banking errors' ready
- [ENGINE] Reading 'bank_gateway.log'
+<img width="947" height="521" alt="image" src="https://github.com/user-attachments/assets/2811c27c-7d77-4f61-b10b-27d9206ae927" />
 
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 11:36:45|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 12:39:15|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 13:41:45|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 14:44:15|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 15:46:45|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 16:49:15|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
-
- [RESULT] Run Complete.
- [RESULT] Errors inserted : 203
- [RESULT] Corrupted Skipped: 6
-
-  =========== ERROR Report By Services ===========
- | CoreSettlementEngine          |   51 error(s) |
- | AuthService                   |   46 error(s) |
- | FixOrderGateway               |   39 error(s) |
- | RiskManagementModule          |   36 error(s) |
- | PaymentAPI                    |   31 error(s) |
-  =================================================
- [ENGINE] Database Connection Closed
-```
 
 Run statistics from the 1,000-row log file:
 
