@@ -66,12 +66,14 @@ Every valid log line follows a pipe-delimited format with exactly four columns â
 The result is ordered by error count in descending order so the most-affected service appears first. This closes the full ETL loop â€” the data is not just stored, it is queried and verified and surfaced as an actionable report on every run.
 
 
-
+'''
 ## Live Output
 
 Running this engine against the 1,000-row `bank_gateway.log` file produces the following terminal output:
 
 <img width="947" height="521" alt="image" src="https://github.com/user-attachments/assets/2811c27c-7d77-4f61-b10b-27d9206ae927" />
+
+'''
 
 
 Run statistics from the 1,000-row log file:
