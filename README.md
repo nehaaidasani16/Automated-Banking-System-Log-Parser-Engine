@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 # Automated-Banking-System-Log-Parser-Engine
 ETL pipeline that parses banking application logs, filters critical errors using defensive programming, and stores them in SQLite for rapid incident triage.
 
->>>>>>> c202c1601e8ae07c6ab110070d5f1c8aa51f349b
 #  Banking Log Parser Engine
 
 **Automated ETL pipeline for banking application platform support**
@@ -69,41 +66,6 @@ Every valid log line follows a pipe-delimited format with exactly four columns �
 The result is ordered by error count in descending order so the most-affected service appears first. This closes the full ETL loop — the data is not just stored, it is queried and verified and surfaced as an actionable report on every run.
 
 
-<<<<<<< HEAD
-
-## Live Demo Output
-
-Running this engine against the 1,000-row `bank_gateway.log` file produces the following terminal output:
-
-```
-====================================
-     Banking Log Parse Engine
-====================================
- [DB] Connected to 'banking_errors.db'
- [DB]  Table 'banking errors' ready
- [ENGINE] Reading 'bank_gateway.log'
-
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 11:36:45|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 12:39:15|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 13:41:45|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 14:44:15|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 15:46:45|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
- [Data Quality ALERT] Malformed row skipped => 2026-06-21 16:49:15|CRITICAL_NETWORK_TIMEOUT_GLITCH_MISSING_COLUMNS
-
- [RESULT] Run Complete.
- [RESULT] Errors inserted : 203
- [RESULT] Corrupted Skipped: 6
-
-  =========== ERROR Report By Services ===========
- | CoreSettlementEngine          |   51 error(s) |
- | AuthService                   |   46 error(s) |
- | FixOrderGateway               |   39 error(s) |
- | RiskManagementModule          |   36 error(s) |
- | PaymentAPI                    |   31 error(s) |
-  =================================================
- [ENGINE] Database Connection Closed
-```
-=======
 '''
 ## Live Output
 
@@ -112,7 +74,6 @@ Running this engine against the 1,000-row `bank_gateway.log` file produces the f
 ![Banking Log Parser Engine — Terminal Output](assets/output.png)
 '''
 
->>>>>>> c202c1601e8ae07c6ab110070d5f1c8aa51f349b
 
 Run statistics from the 1,000-row log file:
 
@@ -130,22 +91,7 @@ CoreSettlementEngine generated the most errors at 51, immediately identifying it
 
 ## Business Value
 
-<<<<<<< HEAD
-| Business Problem | How This Project Solves It |
-|------------------|---------------------------|
-| Outages take hours to diagnose manually | 203 errors isolated from 1,000 rows in milliseconds |
-| Manual log reading causes human error under pressure | Zero human involvement in log parsing or triage |
-| Large log files waste cloud storage | Only ERROR records stored — 797 noise rows filtered at code level |
-| No visibility into which component fails most | SQL GROUP BY delivers instant ranked error report per service |
-| Support SLAs are missed during incidents | Faster MTTR directly protects the bank from regulatory fines |
-
-=======
->>>>>>> c202c1601e8ae07c6ab110070d5f1c8aa51f349b
 The single most important KPI for banking Application Platform Support teams is Mean Time to Resolution. This tool directly reduces it by eliminating the most time-consuming step in every incident — manually locating the root cause inside a massive, unstructured log file.
 
 ---
 
-<<<<<<< HEAD
-Built as a portfolio project targeting Application Platform Support roles at Capco (Wipro), Bengaluru. Tech stack: Python · SQLite · SQL.
-=======
->>>>>>> c202c1601e8ae07c6ab110070d5f1c8aa51f349b
