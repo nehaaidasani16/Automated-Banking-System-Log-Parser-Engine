@@ -1,121 +1,112 @@
 
+<!DOCTYPE html>
+<html>
+<head>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#f5f0e8;font-family:'Segoe UI',sans-serif;padding:16px}
-.card{background:#f5f0e8;width:100%;max-width:560px;margin:0 auto;padding:20px}
-.title{font-size:20px;font-weight:800;color:#1a1a1a;border-left:5px solid #1565c0;padding-left:10px;margin-bottom:3px}
-.sub{font-size:10px;color:#777;padding-left:15px;margin-bottom:18px}
-.watermark{font-size:9px;color:#bbb;text-align:right;margin-bottom:8px}
-.flow{display:flex;flex-direction:column;align-items:stretch;gap:0;position:relative;padding-right:76px}
-.stage-row{display:flex;align-items:stretch;gap:0}
-.stage-pill{width:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;border-radius:6px;margin-right:8px;letter-spacing:.5px;text-align:center;padding:4px 2px;line-height:1.2}
-.box{flex:1;border-radius:10px;border:1.5px solid #ccc;padding:10px 12px;background:#fff;min-height:64px;display:flex;flex-direction:column;justify-content:center}
-.box-title{font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:3px}
-.box-sub{font-size:10px;color:#555;line-height:1.4}
-.box-icon{font-size:20px;margin-bottom:4px}
-.twin{display:flex;gap:8px;flex:1}
-.twin .box{flex:1}
-.connector{height:28px;position:relative;margin-left:72px}
-.connector::before{content:'';position:absolute;left:calc(50% - 1px);width:2px;height:100%;background:#bbb}
-.connector::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%) translateX(-4px);border:5px solid transparent;border-top:7px solid #bbb}
-.dot{width:10px;height:10px;border-radius:50%;position:absolute;left:calc(50% - 5px);animation:flow-down 1.4s ease-in-out infinite}
-@keyframes flow-down{0%{top:0;opacity:0}20%{opacity:1}80%{opacity:1}100%{top:calc(100% - 10px);opacity:0}}
-.dot1{animation-delay:0s}
-.dot2{animation-delay:.45s}
-.dot3{animation-delay:.9s}
-.result{background:#e8f5e9;border:1.5px solid #66bb6a;border-radius:8px;padding:9px 12px;text-align:center;margin-top:4px;margin-left:72px}
-.result-t{font-size:11px;color:#1b5e20;font-weight:700}
-.result-s{font-size:10px;color:#388e3c;margin-top:2px}
+body{background:#111;font-family:'Courier New',monospace;padding:16px;min-height:100vh;display:flex;align-items:flex-start;justify-content:center}
+.terminal{background:#1a1a1a;border-radius:12px;overflow:hidden;width:100%;max-width:620px;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.topbar{background:#2d2d2d;padding:10px 16px;display:flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:50%}
+.filename{color:#888;font-size:12px;margin-left:8px}
+.body{padding:18px 20px;font-size:13px;line-height:1.85;min-height:340px}
+.line{opacity:0;transform:translateY(4px);transition:opacity .3s ease,transform .3s ease;white-space:pre-wrap;word-break:break-all}
+.line.show{opacity:1;transform:translateY(0)}
+.prompt{color:#4ade80}
+.cmd{color:#e8e8e8}
+.info{color:#60a5fa}
+.engine{color:#a78bfa}
+.ok{color:#4ade80}
+.warn{color:#facc15}
+.err{color:#f87171}
+.dim{color:#6b7280}
+.result{color:#67e8f9}
+.sep{color:#374151}
+.bold{font-weight:700}
+.cursor{display:inline-block;width:8px;height:14px;background:#4ade80;margin-left:2px;animation:blink .8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.btn{background:#2563eb;color:#fff;border:none;border-radius:6px;padding:8px 20px;font-size:12px;font-family:inherit;cursor:pointer;margin:12px 20px 16px;display:block;transition:background .2s}
+.btn:hover{background:#1d4ed8}
+.progress{height:3px;background:#2563eb;width:0;transition:width .1s linear;border-radius:0 0 0 0}
 </style>
-
-<div class="card">
-  <div class="watermark">Neha Aidasani · Data Engineer Portfolio</div>
-  <div class="title">Automated Banking Log Parser Engine</div>
-  <div class="sub">Python · SQLite · SQL · ETL Pipeline · Defensive Programming · File I/O</div>
-
-  <div class="flow">
-
-    <div class="stage-row">
-      <div class="stage-pill" style="background:#1565c0">IN&shy;GEST</div>
-      <div class="box" style="background:#e3f2fd;border-color:#90caf9">
-        <div class="box-icon">📄</div>
-        <div class="box-title">bank_gateway.log</div>
-        <div class="box-sub">1,000 raw log lines · unstructured · mixed severity levels</div>
-      </div>
-    </div>
-
-    <div class="connector" style="margin-left:72px">
-      <div class="dot dot1" style="background:#1565c0"></div>
-      <div class="dot dot2" style="background:#1565c0"></div>
-      <div class="dot dot3" style="background:#1565c0"></div>
-    </div>
-
-    <div class="stage-row">
-      <div class="stage-pill" style="background:#6a1b9a">EX&shy;TRACT</div>
-      <div class="box" style="background:#f3e5f5;border-color:#ce93d8">
-        <div class="box-icon">⚙️</div>
-        <div class="box-title">File Reader</div>
-        <div class="box-sub">with open() · line.strip() · line.split("|") → 4 columns per valid row</div>
-      </div>
-    </div>
-
-    <div class="connector">
-      <div class="dot dot1" style="background:#6a1b9a"></div>
-      <div class="dot dot2" style="background:#6a1b9a"></div>
-      <div class="dot dot3" style="background:#6a1b9a"></div>
-    </div>
-
-    <div class="stage-row">
-      <div class="stage-pill" style="background:#ad1457">TRANS&shy;FORM</div>
-      <div class="twin">
-        <div class="box" style="background:#fff3e0;border:1.5px dashed #f57c00">
-          <div class="box-icon">🛡️</div>
-          <div class="box-title">Corruption Guard</div>
-          <div class="box-sub">len(parts) &lt; 4 → skip<br>print DATA QUALITY ALERT</div>
-        </div>
-        <div class="box" style="background:#fce4ec;border:1.5px dashed #f48fb1">
-          <div class="box-icon">🔍</div>
-          <div class="box-title">ERROR Filter</div>
-          <div class="box-sub">level == "ERROR" only<br>skip INFO · skip WARNING</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector">
-      <div class="dot dot1" style="background:#ad1457"></div>
-      <div class="dot dot2" style="background:#ad1457"></div>
-      <div class="dot dot3" style="background:#ad1457"></div>
-    </div>
-
-    <div class="stage-row">
-      <div class="stage-pill" style="background:#2e7d32">LOAD</div>
-      <div class="box" style="background:#e8f5e9;border-color:#a5d6a7">
-        <div class="box-icon">🗄️</div>
-        <div class="box-title">SQLite Database</div>
-        <div class="box-sub">banking_errors.db · INSERT with ? placeholders · conn.commit() after loop</div>
-      </div>
-    </div>
-
-    <div class="connector">
-      <div class="dot dot1" style="background:#2e7d32"></div>
-      <div class="dot dot2" style="background:#2e7d32"></div>
-      <div class="dot dot3" style="background:#2e7d32"></div>
-    </div>
-
-    <div class="stage-row">
-      <div class="stage-pill" style="background:#e65100">VER&shy;IFY</div>
-      <div class="box" style="background:#fff8e1;border-color:#ffe082">
-        <div class="box-icon">📊</div>
-        <div class="box-title">SQL Verification Report</div>
-        <div class="box-sub">SELECT service · COUNT(*) · GROUP BY service · ORDER BY error_count DESC</div>
-      </div>
-    </div>
-
-    <div style="height:10px"></div>
-    <div class="result">
-      <div class="result-t">✅ 203 errors stored &nbsp;·&nbsp; ⚠️ 6 rows quarantined &nbsp;·&nbsp; 🚫 0 crashes</div>
-      <div class="result-s">MTTR reduced from hours → seconds during live banking outages</div>
-    </div>
-
+</head>
+<body>
+<div class="terminal">
+  <div class="topbar">
+    <div class="dot" style="background:#ff5f57"></div>
+    <div class="dot" style="background:#ffbd2e"></div>
+    <div class="dot" style="background:#28c840"></div>
+    <span class="filename">log_engine.py — Banking Log Parser Engine</span>
   </div>
+  <div class="progress" id="prog"></div>
+  <div class="body" id="body">
+    <div class="line show"><span class="prompt">$</span> <span class="cmd">python log_engine.py</span><span class="cursor" id="cur"></span></div>
+  </div>
+  <button class="btn" id="btn" onclick="runDemo()">▶ Run Demo</button>
 </div>
+
+<script>
+const lines = [
+  {t:600,  cls:'sep',    txt:'════════════════════════════════════════'},
+  {t:700,  cls:'engine', txt:'     Banking Log Parser Engine'},
+  {t:800,  cls:'sep',    txt:'════════════════════════════════════════'},
+  {t:1100, cls:'info',   txt:'\n[DB]     Connected to banking_errors.db'},
+  {t:1400, cls:'info',   txt:'[DB]     Table banking_errors ready'},
+  {t:1700, cls:'info',   txt:'[ENGINE] Reading bank_gateway.log ...\n'},
+  {t:2100, cls:'dim',    txt:'[LINE 1]  INFO  row — skipped'},
+  {t:2500, cls:'ok',     txt:'[LINE 2]  ERROR captured → CoreSettlementEngine ✓'},
+  {t:2900, cls:'dim',    txt:'[LINE 3]  WARNING row — skipped'},
+  {t:3300, cls:'warn',   txt:'[LINE 4]  ⚠  DATA QUALITY ALERT — malformed row, skipping safely'},
+  {t:3700, cls:'ok',     txt:'[LINE 5]  ERROR captured → PaymentAPI ✓'},
+  {t:4000, cls:'dim',    txt:'  ...'},
+  {t:4300, cls:'ok',     txt:'[LINE 203] ERROR captured → RiskManagementModule ✓\n'},
+  {t:4700, cls:'info',   txt:'[ENGINE] File read complete. Committing to database...'},
+  {t:5100, cls:'ok',     txt:'[DB]     203 records committed ✓\n'},
+  {t:5400, cls:'sep',    txt:'━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'},
+  {t:5500, cls:'result', txt:'[RESULT] Run complete.'},
+  {t:5600, cls:'ok',     txt:'[RESULT] Errors inserted   : 203'},
+  {t:5700, cls:'warn',   txt:'[RESULT] Corrupted skipped : 6'},
+  {t:5800, cls:'ok',     txt:'[RESULT] Program crashes   : 0'},
+  {t:5900, cls:'sep',    txt:'━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n'},
+  {t:6200, cls:'result', txt:'  ╔═══════════════════════════════════════╗'},
+  {t:6300, cls:'result', txt:'  ║     ERROR REPORT BY SERVICE           ║'},
+  {t:6400, cls:'result', txt:'  ╠═══════════════════════════════════════╣'},
+  {t:6550, cls:'err',    txt:'  ║  CoreSettlementEngine   │  51 error(s) ║'},
+  {t:6700, cls:'err',    txt:'  ║  AuthService            │  46 error(s) ║'},
+  {t:6850, cls:'err',    txt:'  ║  FixOrderGateway        │  39 error(s) ║'},
+  {t:7000, cls:'err',    txt:'  ║  RiskManagementModule   │  36 error(s) ║'},
+  {t:7150, cls:'err',    txt:'  ║  PaymentAPI             │  31 error(s) ║'},
+  {t:7300, cls:'result', txt:'  ╚═══════════════════════════════════════╝\n'},
+  {t:7600, cls:'info',   txt:'[ENGINE] Database connection closed. Done.\n'},
+  {t:7800, cls:'prompt', txt:'$ ▊'},
+];
+
+function runDemo(){
+  const body = document.getElementById('body');
+  const btn  = document.getElementById('btn');
+  const cur  = document.getElementById('cur');
+  const prog = document.getElementById('prog');
+  btn.disabled = true; btn.textContent = '⏳ Running...';
+  cur.style.display = 'none';
+  const total = lines[lines.length-1].t + 400;
+  lines.forEach(l => {
+    setTimeout(() => {
+      const d = document.createElement('div');
+      d.className = 'line ' + l.cls;
+      d.textContent = l.txt;
+      body.appendChild(d);
+      requestAnimationFrame(() => { d.classList.add('show'); });
+      body.scrollTop = body.scrollHeight;
+      prog.style.width = ((l.t / total) * 100) + '%';
+    }, l.t);
+  });
+  setTimeout(() => {
+    prog.style.width = '100%';
+    btn.textContent = '↺ Run Again';
+    btn.disabled = false;
+    btn.onclick = () => location.reload();
+  }, total);
+}
+</script>
+</body>
+</html>
